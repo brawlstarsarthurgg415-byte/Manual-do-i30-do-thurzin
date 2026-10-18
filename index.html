@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -346,7 +347,7 @@ footer strong { color: var(--green); }
     <div class="card-title">CONTROLADORA — JSY-LP001</div>
     <div class="spec-list">
       <div class="spec-row"><span class="spec-key">Modelo</span><span class="spec-val">JSY-LP001 (controladora LED RGB)</span></div>
-      <div class="spec-row"><span class="spec-key">Entrada</span><span class="spec-val good">5–12 V DC</span></div>
+      <div class="spec-row"><span class="spec-key">Entrada</span><span class="spec-val good">quebrado</span></div>
       <div class="spec-row"><span class="spec-key">Saídas</span><span class="spec-val">3 canais: R · G · B</span></div>
       <div class="spec-row"><span class="spec-key">Controle</span><span class="spec-val">Infravermelho (IR)</span></div>
       <div class="spec-row"><span class="spec-key">Pilha</span><span class="spec-val">CR2025 ou CR2032</span></div>
@@ -629,3 +630,636 @@ Portanto:
 
 </body>
 </html>
+``````html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Manual do i30 — Turzin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080a10;
+  --surface: #0f1219;
+  --surface2: #161b26;
+  --green: #4dff91;
+  --green-dim: #1a6638;
+  --orange: #ff9f1c;
+  --blue: #4da6ff;
+  --red: #ff4d6d;
+  --text: #dde3f0;
+  --muted: #6a7899;
+  --border: #1e2535;
+  --border2: #2a3450;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* NAV */
+nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: rgba(8,10,16,.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border2);
+  padding: 0 20px;
+}
+.nav-inner {
+  max-width: 960px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px;
+}
+.nav-logo { font-weight: 700; font-size: .95rem; color: var(--green); letter-spacing: -.02em; }
+.nav-links { display: flex; gap: 20px; }
+.nav-links a {
+  color: var(--muted); text-decoration: none; font-size: .82rem;
+  font-weight: 500; transition: color .15s;
+}
+.nav-links a:hover { color: var(--green); }
+@media(max-width:600px){ .nav-links { display:none; } }
+
+/* HERO */
+.hero {
+  max-width: 960px; margin: 0 auto;
+  padding: 72px 20px 56px;
+}
+.hero-label {
+  display: inline-block;
+  font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+  color: var(--green); border: 1px solid var(--green-dim);
+  background: rgba(77,255,145,.07);
+  padding: 4px 10px; border-radius: 3px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
+  font-weight: 700; line-height: 1.05;
+  letter-spacing: -.04em;
+  color: #fff;
+}
+.hero h1 span { color: var(--green); }
+.hero-sub {
+  margin-top: 18px;
+  font-size: 1.05rem; color: var(--muted);
+  max-width: 560px; font-weight: 400;
+}
+.hero-meta {
+  margin-top: 32px;
+  display: flex; flex-wrap: wrap; gap: 20px;
+  font-size: .8rem; color: var(--muted);
+}
+.hero-meta span { display: flex; align-items: center; gap: 6px; }
+.dot-live {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* GRID + SECTIONS */
+.page { max-width: 960px; margin: 0 auto; padding: 0 20px 80px; }
+.section { margin-bottom: 72px; }
+.section-header {
+  display: flex; align-items: baseline; gap: 14px;
+  border-bottom: 1px solid var(--border2);
+  padding-bottom: 12px; margin-bottom: 28px;
+}
+.sec-num { font-size: .72rem; color: var(--green); font-weight: 600; }
+.section-header h2 {
+  font-size: 1.35rem; font-weight: 600; letter-spacing: -.02em;
+}
+.section-header p { font-size: .82rem; color: var(--muted); margin-left: auto; }
+
+/* CARDS */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.card-title { font-size: .78rem; font-weight: 600; color: var(--muted); margin-bottom: 12px; letter-spacing: .06em; }
+
+/* SPEC TABLE */
+.spec-list { width: 100%; }
+.spec-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: .88rem; gap: 12px; }
+.spec-row:last-child { border: none; padding-bottom: 0; }
+.spec-key { color: var(--muted); flex-shrink: 0; }
+.spec-val { font-weight: 600; text-align: right; }
+.spec-val.good { color: var(--green); }
+.spec-val.warn { color: var(--orange); }
+.spec-val.bad { color: var(--red); }
+
+/* CODE BLOCK */
+.code {
+  background: #060810;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 16px;
+  font-family: 'Courier New', monospace;
+  font-size: .8rem;
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+  color: var(--green);
+  margin: 12px 0;
+}
+.code .c { color: var(--muted); }
+
+/* GRID */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:600px){ .grid-2 { grid-template-columns: 1fr; } }
+
+/* COLOR TABLE */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 4px; }
+.color-item {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: .85rem;
+}
+.color-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+.color-label { font-weight: 600; }
+.color-action { font-size: .75rem; color: var(--muted); margin-top: 2px; }
+
+/* STEP LIST */
+.step-list { list-style: none; counter-reset: steps; }
+.step-list li {
+  counter-increment: steps;
+  display: flex; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+  font-size: .88rem;
+}
+.step-list li:last-child { border: none; }
+.step-num {
+  font-size: .72rem; font-weight: 700; color: var(--green);
+  background: rgba(77,255,145,.1); border: 1px solid var(--green-dim);
+  width: 24px; height: 24px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+  content: counter(steps);
+}
+.step-content strong { color: #fff; }
+
+/* ALERT */
+.alert {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 16px; border-radius: 6px;
+  font-size: .84rem; margin: 12px 0;
+}
+.alert.warn { background: rgba(255,159,28,.08); border: 1px solid rgba(255,159,28,.3); color: var(--orange); }
+.alert.ok { background: rgba(77,255,145,.07); border: 1px solid rgba(77,255,145,.25); color: var(--green); }
+.alert-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+/* TAG */
+.tag { display: inline-block; font-size: .72rem; font-weight: 600; padding: 2px 7px; border-radius: 3px; margin: 2px; }
+.tag.green { background: rgba(77,255,145,.1); color: var(--green); border: 1px solid var(--green-dim); }
+.tag.orange { background: rgba(255,159,28,.1); color: var(--orange); border: 1px solid rgba(255,159,28,.4); }
+.tag.red { background: rgba(255,77,109,.1); color: var(--red); border: 1px solid rgba(255,77,109,.4); }
+.tag.blue { background: rgba(77,166,255,.1); color: var(--blue); border: 1px solid rgba(77,166,255,.4); }
+
+/* DISTRO TABLE */
+.distro-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.distro-table th { padding: 9px 12px; text-align: left; border-bottom: 2px solid var(--border2); color: var(--muted); font-weight: 600; font-size: .75rem; letter-spacing: .05em; }
+.distro-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.distro-table tr:last-child td { border: none; }
+.distro-table tr:hover td { background: var(--surface2); }
+
+/* TERMINAL */
+.terminal {
+  background: #020407;
+  border: 1px solid #1a2a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.terminal-bar {
+  background: #0d1a0d;
+  padding: 8px 14px;
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid #1a2a1a;
+}
+.term-dot { width: 10px; height: 10px; border-radius: 50%; }
+.terminal-body { padding: 16px; font-family: 'Courier New', monospace; font-size: .82rem; line-height: 1.7; color: #aaffaa; }
+.terminal-body .prompt { color: var(--green); }
+.terminal-body .out { color: #88cc88; }
+.terminal-body .comment { color: #4a6a4a; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border2);
+  padding: 32px 20px;
+  text-align: center;
+  font-size: .78rem; color: var(--muted);
+}
+footer strong { color: var(--green); }
+
+/* HOSTING SECTION */
+.hosting-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 14px; }
+.host-card {
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 18px;
+}
+.host-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: 6px; }
+.host-card p { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+.host-card .host-url { font-size: .75rem; color: var(--blue); margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">⚙ i30.turzin</span>
+    <div class="nav-links">
+      <a href="#hardware">Hardware</a>
+      <a href="#ventoinha">Ventoinha</a>
+      <a href="#cores">Cores</a>
+      <a href="#linux">Linux</a>
+      <a href="#gambiarras">Dicas</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">MANUAL TÉCNICO OFICIAL</div>
+  <h1>Manual do<br><span>i30</span> do Turzin</h1>
+  <p class="hero-sub">O guia definitivo do notebook gamer antigo ressuscitado com criatividade, gambiarra e zero dinheiro.</p>
+  <div class="hero-meta">
+    <span><span class="dot-live"></span> Projeto ativo</span>
+    <span>📍 Araçatuba, SP</span>
+    <span>🔧 Versão 1.0 — out/2026</span>
+  </div>
+</header>
+
+<main class="page">
+
+<!-- 01 HISTORIA -->
+<section class="section">
+  <div class="section-header">
+    <span class="sec-num">01</span>
+    <h2>A História do i30</h2>
+  </div>
+  <div class="card">
+    <p style="font-size:.92rem;line-height:1.8;color:#b8c4d8">
+      Um desconhecido apareceu no bar do avô. Deixou um notebook gamer antigo.
+      O avô passou pro Turzin. O Turzin abriu, desmontou, adaptou, soldou (sem ferro de solda),
+      colou com dupla face e transformou a máquina em projeto pessoal.
+      Sem HD. Com RAM sobrando de outro notebook. Com ventoinha controlada por controle remoto de LED.
+      Com fonte de televisão Samsung adaptada. Isso é gambiarra de alto nível.
+    </p>
+    <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px">
+      <span class="tag green">5V funciona</span>
+      <span class="tag orange">sem HD</span>
+      <span class="tag blue">DDR2 SODIMM</span>
+      <span class="tag blue">64-bit</span>
+      <span class="tag orange">fonte adaptada</span>
+      <span class="tag green">ventoinha com IR</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 HARDWARE -->
+<a name="hardware"></a>
+<section class="section">
+  <div class="section-header">
+    <span class="sec-num">02</span>
+    <h2>Hardware do i30</h2>
+    <p>especificações reais</p>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">SISTEMA</div>
+      <div class="spec-list">
+        <div class="spec-row"><span class="spec-key">Modelo</span><span class="spec-val">i30 (montadora nacional)</span></div>
+        <div class="spec-row"><span class="spec-key">Ano</span><span class="spec-val">~2008</span></div>
+        <div class="spec-row"><span class="spec-key">Arq. processador</span><span class="spec-val good">64 bits</span></div>
+        <div class="spec-row"><span class="spec-key">Núcleos</span><span class="spec-val">2+ (CPU 0 e 1 visíveis)</span></div>
+        <div class="spec-row"><span class="spec-key">RAM</span><span class="spec-val warn">~730 MB (DDR2)</span></div>
+        <div class="spec-row"><span class="spec-key">HD</span><span class="spec-val bad">Ausente</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">CONECTIVIDADE</div>
+      <div class="spec-list">
+        <div class="spec-row"><span class="spec-key">Wi-Fi</span><span class="spec-val warn">Broadcom (precisa firmware b43)</span></div>
+        <div class="spec-row"><span class="spec-key">Chave Wi-Fi</span><span class="spec-val">Física ON/OFF</span></div>
+        <div class="spec-row"><span class="spec-key">Placa Wi-Fi tipo</span><span class="spec-val">mini PCI Express</span></div>
+        <div class="spec-row"><span class="spec-key">Saída vídeo</span><span class="spec-val">VGA</span></div>
+        <div class="spec-row"><span class="spec-key">Baia CD</span><span class="spec-val good">Presente (usada pro sensor IR)</span></div>
+        <div class="spec-row"><span class="spec-key">Fonte original</span><span class="spec-val">19 V · 3,42–3,92 A</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="alert warn">
+    <span class="alert-icon">⚡</span>
+    <span>A ventoinha foi <strong>desconectada da placa-mãe</strong> (conector cortado). Ela não responde mais à temperatura. Manter sempre na velocidade máxima quando o notebook estiver trabalhando pesado.</span>
+  </div>
+</section>
+
+<!-- 03 VENTOINHA -->
+<a name="ventoinha"></a>
+<section class="section">
+  <div class="section-header">
+    <span class="sec-num">03</span>
+    <h2>A Ventoinha com Controle Remoto</h2>
+    <p>projeto principal</p>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-title">CONTROLADORA — JSY-LP001</div>
+    <div class="spec-list">
+      <div class="spec-row"><span class="spec-key">Modelo</span><span class="spec-val">JSY-LP001 (controladora LED RGB)</span></div>
+      <div class="spec-row"><span class="spec-key">Entrada</span><span class="spec-val good">quebrado</span></div>
+      <div class="spec-row"><span class="spec-key">Saídas</span><span class="spec-val">3 canais: R · G · B</span></div>
+      <div class="spec-row"><span class="spec-key">Controle</span><span class="spec-val">Infravermelho (IR)</span></div>
+      <div class="spec-row"><span class="spec-key">Pilha</span><span class="spec-val">CR2025 ou CR2032</span></div>
+      <div class="spec-row"><span class="spec-key">Modo ao ligar</span><span class="spec-val warn">FLASH (volta sempre) → apertar W</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">ESQUEMA DE LIGAÇÃO</div>
+    <div class="code"><span class="c">── ALIMENTAÇÃO DA CONTROLADORA ──────────────────</span>
+Cabo USB cortado:
+  Fio VERMELHO ──► Pad (+) da controladora
+  Fio PRETO    ──► Pad (−) da controladora
+  Fio BRANCO   ──► ✂ isolado com fita (dado USB)
+  Fio VERDE    ──► ✂ isolado com fita (dado USB)
+
+<span class="c">⚠ ATENÇÃO: mínimo 5V 1A (1W = 0,2A é INSUFICIENTE)</span>
+
+<span class="c">── VENTOINHA NA SAÍDA ───────────────────────────</span>
+<span class="c">As cores INVERTEM na saída da placa:</span>
+  Fio PRETO  da controladora = POSITIVO (+)
+  Fio VERMELHO da controladora = Canal R (sinal)
+
+Portanto:
+  Fio VERMELHO da ventoinha ──► Fio PRETO  da placa (+)
+  Fio PRETO   da ventoinha ──► Fio VERMELHO da placa (R)</div>
+    <div class="alert ok">
+      <span class="alert-icon">✓</span>
+      <span>Para 3 ventoinhas: + de todas no fio preto da placa. Canal R → ventoinha 1, Canal G → 2, Canal B → 3.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 04 CORES -->
+<a name="cores"></a>
+<section class="section">
+  <div class="section-header">
+    <span class="sec-num">04</span>
+    <h2>Mapa de Cores × Ventoinhas</h2>
+    <p>descoberta experimental do Turzin</p>
+  </div>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:16px">Cores com vermelho = ventoinha gira. Cores sem vermelho = ventoinha para. Isso foi descoberto pelo Turzin testando botão por botão.</p>
+  <div class="color-grid">
+    <div class="color-item">
+      <div class="color-dot" style="background:#ff3333"></div>
+      <div><div class="color-label">Vermelho</div><div class="color-action">Ventoinha 1 liga</div></div>
+    </div>
+    <div class="color-item">
+      <div class="color-dot" style="background:#33ff33"></div>
+      <div><div class="color-label">Verde</div><div class="color-action">Ventoinha 2 liga</div></div>
+    </div>
+    <div class="color-item">
+      <div class="color-dot" style="background:#3366ff"></div>
+      <div><div class="color-label">Azul 🛑</div><div class="color-action">DESLIGAR (sem vermelho)</div></div>
+    </div>
+    <div class="color-item">
+      <div class="color-dot" style="background:#ffff33"></div>
+      <div><div class="color-label">Amarelo</div><div class="color-action">Ventoinhas 1 + 2</div></div>
+    </div>
+    <div class="color-item">
+      <div class="color-dot" style="background:#33ffff"></div>
+      <div><div class="color-label">Ciano 🛑</div><div class="color-action">Para (sem vermelho)</div></div>
+    </div>
+    <div class="color-item">
+      <div class="color-dot" style="background:#ff33ff"></div>
+      <div><div class="color-label">Magenta</div><div class="color-action">Ventoinhas 1 + 3</div></div>
+    </div>
+    <div class="color-item" style="border-color:var(--green-dim)">
+      <div class="color-dot" style="background:#ffffff;border:1px solid #444"></div>
+      <div><div class="color-label" style="color:var(--green)">Branco ★</div><div class="color-action">TODAS as ventoinhas</div></div>
+    </div>
+    <div class="color-item">
+      <div class="color-dot" style="background:#ff9933"></div>
+      <div><div class="color-label">Laranja</div><div class="color-action">Contém vermelho → liga</div></div>
+    </div>
+  </div>
+  <div class="alert warn" style="margin-top:16px">
+    <span class="alert-icon">🚫</span>
+    <span>Modos <strong>FLASH · STROBE · FADE · SMOOTH</strong> fazem a ventoinha tremer e fazer barulho de mola. Evitar sempre.</span>
+  </div>
+</section>
+
+<!-- 05 FONTES -->
+<section class="section">
+  <div class="section-header">
+    <span class="sec-num">05</span>
+    <h2>Histórico de Fontes</h2>
+    <p>o que funcionou e o que não funcionou</p>
+  </div>
+  <div class="card">
+    <div class="spec-list">
+      <div class="spec-row">
+        <span class="spec-key">Fonte 5V 1W (original da controladora)</span>
+        <span class="spec-val bad">❌ Fraca demais (0,2 A)</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">Samsung 5V 5,1 A (carregador USB triplo)</span>
+        <span class="spec-val good">✓ Ideal para a ventoinha</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">Porta USB (TV / PC / notebook)</span>
+        <span class="spec-val good">✓ Funciona para testes</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">Fonte TV Samsung adaptada (19V ~2,5A)</span>
+        <span class="spec-val warn">⚠ Tensão ok, corrente baixa → desliga sob carga</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">LG PA-1900-08 (19V 4,74A 90W)</span>
+        <span class="spec-val good">✓ Fonte certa para o notebook</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 LINUX -->
+<a name="linux"></a>
+<section class="section">
+  <div class="section-header">
+    <span class="sec-num">06</span>
+    <h2>Tentativas de Linux</h2>
+    <p>730 MB de RAM é pouco, mas dá</p>
+  </div>
+  <div class="card" style="margin-bottom:14px;overflow-x:auto">
+    <table class="distro-table">
+      <tr>
+        <th>Sistema</th>
+        <th>Resultado</th>
+        <th>Motivo</th>
+      </tr>
+      <tr>
+        <td>Linux Mint</td>
+        <td><span class="tag red">❌ Travou</span></td>
+        <td style="color:var(--muted);font-size:.82rem">Pede 2 GB RAM, só 64 bits</td>
+      </tr>
+      <tr>
+        <td>Arch Linux</td>
+        <td><span class="tag red">❌ Kernel panic</span></td>
+        <td style="color:var(--muted);font-size:.82rem">initramfs não cabe na RAM</td>
+      </tr>
+      <tr>
+        <td>Debian netinst</td>
+        <td><span class="tag orange">⚠ ~34%</span></td>
+        <td style="color:var(--muted);font-size:.82rem">Entrou em low-memory mode, caiu por fonte fraca</td>
+      </tr>
+      <tr>
+        <td>Ubuntu Server 16.04 i386</td>
+        <td><span class="tag orange">⚠ 83%</span></td>
+        <td style="color:var(--muted);font-size:.82rem">Segfault no dpkg-divert (possível RAM com defeito)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700">Debian standard (próximo passo)</td>
+        <td><span class="tag green">✓ Recomendado</span></td>
+        <td style="color:var(--muted);font-size:.82rem">Com fonte LG 90W e ventoinha no máximo</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="term-dot" style="background:#ff5f57"></div>
+      <div class="term-dot" style="background:#ffbd2e"></div>
+      <div class="term-dot" style="background:#28c940"></div>
+      <span style="font-size:.72rem;color:#4a6a4a;margin-left:8px">i30 — terminal</span>
+    </div>
+    <div class="terminal-body">
+<span class="comment"># verificar RAM durante instalação:</span>
+<span class="prompt">root@i30:~# </span>grep MemTotal /proc/meminfo
+<span class="out">MemTotal:         729892 kB    ← ~730 MB</span>
+
+<span class="comment"># depois de instalar o Debian, usar:</span>
+<span class="prompt">turzin@i30:~$ </span>free -h
+<span class="prompt">turzin@i30:~$ </span>fastfetch
+<span class="prompt">turzin@i30:~$ </span>htop
+    </div>
+  </div>
+</section>
+
+<!-- 07 GAMBIARRAS -->
+<a name="gambiarras"></a>
+<section class="section">
+  <div class="section-header">
+    <span class="sec-num">07</span>
+    <h2>Dicas &amp; Gambiarras</h2>
+    <p>o que foi descoberto na prática</p>
+  </div>
+  <div class="card">
+    <ol class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Ventoinha travou e não responde ao controle?</strong><br>
+          Seleciona azul (que não tem vermelho → para a ventoinha), aumenta o brilho e volta pro vermelho/branco. Reset gambiarra.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Controladora liga em modo FLASH sempre?</strong><br>
+          Normal. Apertar <strong>W (branco)</strong> imediatamente após ligar resolve. Não tem como mudar o padrão.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Barulho agudo "miiii" na ventoinha?</strong><br>
+          É o PWM em velocidade baixa fazendo as bobinas vibrarem. Normal em ventoinha brushless. No brilho máximo some.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Notebook desligou sozinho durante instalação do Linux?</strong><br>
+          Ventoinha no máximo (W + brilho alto) antes de ligar o notebook. Usar fonte LG 90W direto na tomada, sem extensão.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Sensor IR não alcança?</strong><br>
+          Estender com os fios verde e branco do cabo USB (dados). Passar pela baia do CD, deixar só a anteninha de fora.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <strong>Wi-Fi Broadcom não funciona no Linux?</strong><br>
+          Precisa do firmware b43. Opção mais fácil: cabo de rede no roteador ou tethering USB com celular (Configurações → Ponto de acesso → Tethering USB).
+        </div>
+      </li>
+      <li>
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <strong>RAM nova do segundo notebook?</strong><br>
+          Tem que ser DDR2 SODIMM. Verificar a etiqueta do pente. Com 2 GB ficaria bem mais confortável.
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 08 PRÓXIMOS PASSOS -->
+<section class="section">
+  <div class="section-header">
+    <span class="sec-num">08</span>
+    <h2>Próximos Passos</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">A FAZER</div>
+      <ul style="list-style:none;font-size:.86rem;line-height:2.1">
+        <li>☐ Instalar Debian standard (fonte LG, ventoinha no máximo)</li>
+        <li>☐ Configurar Wi-Fi (firmware b43 ou cabo)</li>
+        <li>☐ Instalar fastfetch e ver o neofetch do i30</li>
+        <li>☐ Pegar RAM DDR2 do segundo notebook</li>
+        <li>☐ Ligar sensor IR na baia do CD</li>
+        <li>☐ Fita de LED 5V em canal vago da controladora</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">PROJETOS FUTUROS</div>
+      <ul style="list-style:none;font-size:.86rem;line-height:2.1">
+        <li>☐ 3 ventoinhas nos 3 canais (R·G·B)</li>
+        <li>☐ HD de desktop via adaptador USB-SATA</li>
+        <li>☐ Ventoinha 12V com fonte própria</li>
+        <li>☐ Gravar vídeo do projeto pro YouTube</li>
+        <li>☐ Colar etiquetas no controle remoto</li>
+        <li>☐ Experimentar Windows XP (tem chance)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Feito com 🔧 gambiarra e orgulho por <strong>Turzin</strong> — Araçatuba, SP</p>
+  <p style="margin-top:6px;font-size:.72rem">Manual do i30 · versão 1.0 · outubro 2026</p>
+</footer>
+
+</body>
+</html>
+```
